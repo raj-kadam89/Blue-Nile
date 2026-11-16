@@ -1,0 +1,43 @@
+/* Dashboard (owner/staff) styles. Scoped under .dash-root to avoid leaking into the public site. */
+.dash-root {
+  --dash-bg: #f4f2ed;
+  --dash-card: #ffffff;
+  --dash-border: #e7e2d6;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  background: var(--dash-bg);
+  color: var(--color-charcoal);
+}
+.dash-root .num, .dash-root table { font-variant-numeric: tabular-nums; }
+.dash-root h1, .dash-root h2, .dash-root h3 { font-family: var(--font-serif); }
+
+@keyframes dash-shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.dash-skeleton {
+  background: linear-gradient(90deg, #ece8dd 25%, #f6f3ea 37%, #ece8dd 63%);
+  background-size: 800px 100%;
+  animation: dash-shimmer 1.4s infinite linear;
+  border-radius: 0.5rem;
+}
+@keyframes dash-pop {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+.dash-pop { animation: dash-pop 0.18s ease-out; }
+@keyframes dash-slide {
+  from { transform: translateX(24px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.dash-slide { animation: dash-slide 0.2s ease-out; }
+@keyframes dash-pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(185, 149, 90, 0.5); }
+  100% { box-shadow: 0 0 0 10px rgba(185, 149, 90, 0); }
+}
+.dash-ping { animation: dash-pulse-ring 1.6s infinite; }
+.dash-scroll::-webkit-scrollbar { height: 8px; width: 8px; }
+.dash-scroll::-webkit-scrollbar-thumb { background: #cfc8b6; border-radius: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dash-skeleton, .dash-pop, .dash-slide, .dash-ping { animation: none; }
+}

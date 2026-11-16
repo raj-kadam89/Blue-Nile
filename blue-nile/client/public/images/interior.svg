@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" width="900" height="650">
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#222620"/><stop offset="100%" stop-color="#151613"/>
+    </linearGradient>
+    <radialGradient id="lamp" cx="50%" cy="30%" r="45%">
+      <stop offset="0%" stop-color="#D4B986" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#D4B986" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="900" height="650" fill="url(#wall)"/>
+  <circle cx="270" cy="210" r="210" fill="url(#lamp)"/>
+  <circle cx="630" cy="210" r="210" fill="url(#lamp)"/>
+  <!-- Pendant lamps -->
+  <g stroke="#B9955A" stroke-width="2" fill="#B9955A" fill-opacity="0.35">
+    <line x1="270" y1="0" x2="270" y2="140"/><path d="M235 140 h70 l-14 28 h-42 z"/>
+    <line x1="630" y1="0" x2="630" y2="140"/><path d="M595 140 h70 l-14 28 h-42 z"/>
+  </g>
+  <!-- Archways -->
+  <g fill="none" stroke="#B9955A" stroke-opacity="0.28" stroke-width="2">
+    <path d="M120 520 V250 a150 150 0 0 1 300 0 V520"/>
+    <path d="M480 520 V250 a150 150 0 0 1 300 0 V520"/>
+  </g>
+  <!-- Dining table silhouette -->
+  <rect x="180" y="455" width="540" height="14" fill="#B9955A" opacity="0.55"/>
+  <rect x="230" y="469" width="12" height="95" fill="#B9955A" opacity="0.3"/>
+  <rect x="658" y="469" width="12" height="95" fill="#B9955A" opacity="0.3"/>
+  <text x="56" y="606" fill="#F5F1E9" fill-opacity="0.45" font-family="Georgia, serif" font-size="13" letter-spacing="3">DINING ROOM · ILLUSTRATIVE ARTWORK</text>
+</svg>

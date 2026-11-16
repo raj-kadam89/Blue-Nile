@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" width="900" height="650">
+  <rect width="900" height="650" fill="#231d17"/>
+  <rect x="32" y="32" width="836" height="586" fill="none" stroke="#B9955A" stroke-opacity="0.25"/>
+  <ellipse cx="450" cy="390" rx="220" ry="52" fill="#F5F1E9" opacity="0.88"/>
+  <ellipse cx="450" cy="382" rx="165" ry="32" fill="#8b4c1f" opacity="0.75"/>
+  <path d="M345 375 L375 275 Q450 258 525 275 L555 375 Z" fill="#e6be7a"/>
+  <path d="M372 282 Q450 266 528 282 L536 312 Q450 298 364 312 Z" fill="#6f3610"/>
+  <text x="56" y="592" fill="#B9955A" fill-opacity="0.5" font-family="Georgia, serif" font-size="13" letter-spacing="3">CARAMEL CUSTARD · ILLUSTRATIVE ARTWORK</text>
+</svg>

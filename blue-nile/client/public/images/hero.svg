@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <defs>
+    <radialGradient id="g1" cx="62%" cy="44%" r="65%">
+      <stop offset="0%" stop-color="#3a2a19"/>
+      <stop offset="55%" stop-color="#1d1814"/>
+      <stop offset="100%" stop-color="#110f0d"/>
+    </radialGradient>
+    <radialGradient id="handi" cx="50%" cy="46%" r="50%">
+      <stop offset="0%" stop-color="#d29c4c"/>
+      <stop offset="65%" stop-color="#8b5a22"/>
+      <stop offset="100%" stop-color="#3c2611"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#g1)"/>
+  <g stroke="#B9955A" stroke-opacity="0.16" fill="none">
+    <rect x="44" y="44" width="1112" height="662" stroke-width="1"/>
+    <rect x="56" y="56" width="1088" height="638" stroke-width="1"/>
+  </g>
+  <!-- Moody copper handi silhouette -->
+  <circle cx="760" cy="390" r="220" fill="#0d0b09" opacity="0.55"/>
+  <circle cx="745" cy="375" r="205" fill="none" stroke="#B9955A" stroke-width="6" stroke-opacity="0.55"/>
+  <circle cx="745" cy="375" r="185" fill="url(#handi)" opacity="0.88"/>
+  <!-- Saffron & herb strokes -->
+  <g stroke="#F5F1E9" stroke-width="3" stroke-linecap="round" opacity="0.65">
+    <path d="M660 330 q30 -18 58 6"/><path d="M740 295 q28 16 48 -6"/><path d="M810 355 q-24 22 -52 8"/>
+    <path d="M685 405 q34 18 66 -8"/><path d="M755 435 q28 -14 54 10"/><path d="M640 370 q22 24 48 6"/>
+  </g>
+  <g fill="#4A5346" opacity="0.85">
+    <ellipse cx="715" cy="355" rx="14" ry="7" transform="rotate(-22 715 355)"/>
+    <ellipse cx="782" cy="388" rx="16" ry="8" transform="rotate(18 782 388)"/>
+    <ellipse cx="735" cy="415" rx="12" ry="6" transform="rotate(-8 735 415)"/>
+  </g>
+  <!-- Brass bowl side -->
+  <circle cx="430" cy="500" r="78" fill="#171411" stroke="#B9955A" stroke-width="3" stroke-opacity="0.5"/>
+  <circle cx="430" cy="500" r="64" fill="#E9E2D3" opacity="0.82"/>
+  <text x="86" y="655" fill="#B9955A" fill-opacity="0.45" font-family="Georgia, serif" font-size="15" letter-spacing="4">BLUE NILE · PUNE · ILLUSTRATIVE PLACEHOLDER</text>
+</svg>
