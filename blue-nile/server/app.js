@@ -14,7 +14,11 @@ export function createApp() {
   app.disable('x-powered-by')
   app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }))
   app.use(cors({
-    origin: (origin, cb) => cb(null, !origin || env.clientOrigins.includes(origin)),
+    origin: (origin, cb) => {
+      if (!origin) return cb(null, true)
+      const normalized = origin.replace(/\/+$/, '')
+      return cb(null, env.clientOrigins.length === 0 || env.clientOrigins.includes(normalized))
+    },
     credentials: true,
     allowedHeaders: ['Content-Type', 'X-CSRF-Token'],
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],

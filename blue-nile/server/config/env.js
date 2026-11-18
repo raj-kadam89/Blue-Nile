@@ -14,7 +14,7 @@ const schema = z.object({
   MONGO_URI: z.string().optional(),
   JWT_SECRET: z.string().optional(),
   JWT_REFRESH_SECRET: z.string().optional(),
-  CLIENT_URL: z.string().default('http://localhost:5173'),
+  CLIENT_URL: z.string().optional(),
   OTP_PROVIDER: z.string().optional(),
   OTP_API_KEY: z.string().optional(),
   OTP_SENDER_ID: z.string().optional(),
@@ -30,6 +30,9 @@ const schema = z.object({
   SEED_OWNER_NAME: z.string().optional(),
   SEED_OWNER_EMAIL: z.string().optional(),
   SEED_OWNER_PASSWORD: z.string().optional(),
+  SEED_STAFF_NAME: z.string().optional(),
+  SEED_STAFF_EMAIL: z.string().optional(),
+  SEED_STAFF_PASSWORD: z.string().optional(),
 })
 
 const parsed = schema.parse(process.env)
@@ -51,6 +54,6 @@ export const env = {
   isTest: parsed.NODE_ENV === 'test',
   JWT_SECRET: secret(parsed.JWT_SECRET, 'JWT_SECRET'),
   JWT_REFRESH_SECRET: secret(parsed.JWT_REFRESH_SECRET, 'JWT_REFRESH_SECRET'),
-  clientOrigins: parsed.CLIENT_URL.split(',').map((s) => s.trim()).filter(Boolean),
+  clientOrigins: (parsed.CLIENT_URL || '').split(',').map((s) => s.trim().replace(/\/+$/, '')).filter(Boolean),
   otpProvider: (parsed.OTP_PROVIDER || (parsed.NODE_ENV === 'development' ? 'dev' : '')).toLowerCase(),
 }

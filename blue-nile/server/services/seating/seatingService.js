@@ -63,18 +63,15 @@ export async function ensureDefaultTables() {
 }
 
 /**
- * Ensure an OWNER account (and a starter STAFF account in dev) exists in MongoDB.
- * Reads SEED_OWNER_EMAIL / SEED_OWNER_PASSWORD from .env, or falls back in development to:
- *   Owner -> admin@bluenile.com / Admin@123456
- *   Staff -> staff@bluenile.com / Staff@123456
+ * Ensure OWNER and STAFF accounts exist in MongoDB using ONLY environment variable keys
+ * (SEED_OWNER_NAME, SEED_OWNER_EMAIL, SEED_OWNER_PASSWORD, SEED_STAFF_NAME, SEED_STAFF_EMAIL, SEED_STAFF_PASSWORD).
  */
 export async function ensureDefaultAccounts() {
   dotenv.config({ path: rootEnvPath, override: true, quiet: true })
   const seedEmail = (process.env.SEED_OWNER_EMAIL || env.SEED_OWNER_EMAIL || '').toLowerCase().trim()
   const seedPass = process.env.SEED_OWNER_PASSWORD || env.SEED_OWNER_PASSWORD || ''
-  const seedName = process.env.SEED_OWNER_NAME || env.SEED_OWNER_NAME || 'Blue Nile Owner'
+  const seedName = process.env.SEED_OWNER_NAME || env.SEED_OWNER_NAME || 'Owner'
 
-  // 1. If SEED_OWNER_EMAIL & SEED_OWNER_PASSWORD are set in .env, ensure that exact owner exists with that password
   if (seedEmail && seedPass) {
     const existingSeed = await User.findOne({ email: seedEmail, role: { $in: ['OWNER', 'STAFF'] } }).select('+passwordHash')
     if (!existingSeed) {
@@ -98,25 +95,16 @@ export async function ensureDefaultAccounts() {
     }
   }
 
-  // 2. Also ensure the default dev Owner (admin@bluenile.com) exists in development
-  if (env.isDev && !(await User.exists({ email: 'admin@bluenile.com' }))) {
-    await User.create({
-      role: 'OWNER',
-      name: 'Blue Nile Owner',
-      email: 'admin@bluenile.com',
-      passwordHash: await bcrypt.hash('Admin@123456', 12),
-      active: true,
-    })
-    console.log('[auth] Seeded dev OWNER account: admin@bluenile.com')
-  }
+  const staffEmail = (process.env.SEED_STAFF_EMAIL || env.SEED_STAFF_EMAIL || '').toLowerCase().trim()
+  const staffPass = process.env.SEED_STAFF_PASSWORD || env.SEED_STAFF_PASSWORD || ''
+  const staffName = process.env.SEED_STAFF_NAME || env.SEED_STAFF_NAME || 'Staff'
 
-  // 3. Ensure a starter STAFF account exists in development
-  if (env.isDev && !(await User.exists({ role: 'STAFF' }))) {
+  if (staffEmail && staffPass && !(await User.exists({ email: staffEmail }))) {
     const staffUser = await User.create({
       role: 'STAFF',
-      name: 'Reception Staff',
-      email: 'staff@bluenile.com',
-      passwordHash: await bcrypt.hash('Staff@123456', 12),
+      name: staffName,
+      email: staffEmail,
+      passwordHash: await bcrypt.hash(staffPass, 12),
       active: true,
     })
     await StaffProfile.create({
@@ -124,7 +112,7 @@ export async function ensureDefaultAccounts() {
       designation: 'Front Desk Host',
       permissions: { canReschedule: true, canCreateWalkIn: true },
     })
-    console.log('[auth] Seeded STAFF account: staff@bluenile.com')
+    console.log(`[auth] Seeded STAFF from .env: ${staffEmail}`)
   }
 }
 

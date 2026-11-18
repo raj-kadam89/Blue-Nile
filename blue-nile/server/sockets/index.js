@@ -5,7 +5,16 @@ import { setIO } from './emitter.js'
 
 /** Socket.IO: only authenticated OWNER/STAFF sessions may connect (cookie auth, origin-restricted). */
 export function initSockets(httpServer, origins) {
-  const io = new Server(httpServer, { cors: { origin: origins, credentials: true } })
+  const io = new Server(httpServer, {
+    cors: {
+      origin: (origin, cb) => {
+        if (!origin) return cb(null, true)
+        const normalized = origin.replace(/\/+$/, '')
+        return cb(null, !origins?.length || origins.includes(normalized))
+      },
+      credentials: true,
+    },
+  })
   io.use(async (socket, next) => {
     try {
       const token = parseCookies(socket.handshake.headers.cookie || '').bn_at
